@@ -1,6 +1,6 @@
 package com.education.collection;
+
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
@@ -12,18 +12,21 @@ public class MyList implements List {
     private int listSize;                   // Current # of list items
     private int curr;                       // Position of current element
 
-    MyList(int size) {
-        maxSize = size;
-        listSize = curr = 0;
-        listArray = new Object[size];         // Create listArray
+    MyList(int maxSize) {
+        this.maxSize = maxSize;
+        curr = 0;
+        listArray = new Object[maxSize];         // Create listArray
+        listSize = 0;
     }
 
     // Create a list with the default capacity
-    MyList() { this(DEFAULT_SIZE); }          // Just call the other constructor
+    MyList() {
+        this(DEFAULT_SIZE);
+    }          // Just call the other constructor
 
     @Override
     public int size() {
-        return 0;
+        return listSize;
     }
 
     @Override
@@ -42,50 +45,18 @@ public class MyList implements List {
     }
 
     @Override
-    public Iterator iterator() {
-        return null;
-    }
-
-    @Override
     public Object[] toArray() {
         return new Object[0];
     }
 
     @Override
     public boolean add(Object o) {
-        if (listSize >= maxSize) return false;
+        if (listSize >= maxSize) {
+            return false;
+        }
         listArray[listSize++] = o;
+        listSize++;
         return true;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeIf(Predicate filter) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(int index, Collection c) {
-        return false;
-    }
-
-    @Override
-    public void replaceAll(UnaryOperator operator) {
-
-    }
-
-    @Override
-    public void sort(Comparator c) {
-
     }
 
     @Override
@@ -95,19 +66,17 @@ public class MyList implements List {
 
     @Override
     public Object get(int index) {
-        if(index < 0 || index > maxSize) return null;
+        if (index < 0 || index > maxSize) {
+            return null;
+        }
         return listArray[index];
     }
 
     @Override
-    public Object set(int index, Object element) {
-        return null;
-    }
-
-    @Override
     public void add(int index, Object element) {
-        if (listSize >= maxSize) System.out.print("Invalid list size");
-        else {
+        if (listSize >= maxSize) {
+            System.out.print("Invalid list size");
+        } else {
             for (int i = listSize; i > index; i--)  // Shift elements up
                 listArray[i] = listArray[i - 1];   //   to make room
             listArray[index] = element;
@@ -117,12 +86,11 @@ public class MyList implements List {
 
     @Override
     public Object remove(int index) {
-        if (index >= maxSize || index < 0){
+        if (index >= maxSize || index < 0) {
             System.out.print("Invalid list size or index");
             return listArray;
-        }
-        else {
-            for (int i = index; i < listSize-1; i++)  // Shift elements up
+        } else {
+            for (int i = index; i < listSize - 1; i++)  // Shift elements up
                 listArray[i] = listArray[i + 1];   //   to make room
             listSize--;                        // Increment list size
         }
@@ -130,62 +98,103 @@ public class MyList implements List {
     }
 
     @Override
+    public Iterator iterator() {
+        throw new UnsupportedOperationException("This operation is not supported");
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        throw new UnsupportedOperationException("This operation is not supported");
+    }
+
+    @Override
+    public boolean addAll(Collection c) {
+        throw new UnsupportedOperationException("This operation is not supported");
+    }
+
+    @Override
+    public boolean removeIf(Predicate filter) {
+        throw new UnsupportedOperationException("This operation is not supported");
+    }
+
+    @Override
+    public boolean addAll(int index, Collection c) {
+        throw new UnsupportedOperationException("This operation is not supported");
+    }
+
+    @Override
+    public void replaceAll(UnaryOperator operator) {
+        throw new UnsupportedOperationException("This operation is not supported");
+    }
+
+    @Override
+    public void sort(Comparator c) {
+        throw new UnsupportedOperationException("This operation is not supported");
+    }
+
+
+    @Override
+    public Object set(int index, Object element) {
+        throw new UnsupportedOperationException("This operation is not supported");
+    }
+
+    @Override
     public int indexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public ListIterator listIterator() {
-        return null;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public ListIterator listIterator(int index) {
-        return null;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public List subList(int fromIndex, int toIndex) {
-        return null;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public Spliterator spliterator() {
-        return null;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public Stream stream() {
-        return null;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public Stream parallelStream() {
-        return null;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public boolean retainAll(Collection c) {
-        return false;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public boolean removeAll(Collection c) {
-        return false;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public boolean containsAll(Collection c) {
-        return false;
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 
     @Override
     public Object[] toArray(Object[] a) {
-        return new Object[0];
+        throw new UnsupportedOperationException("This operation is not supported");
     }
 }

@@ -1,12 +1,13 @@
 package com.education.collection;
+
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
 
-public class mystack extends Stack{
+public class MyStack extends Stack {
     private MyList stack;
 
-    public mystack() {
+    public MyStack() {
         stack = new MyList();
     }
 
@@ -21,14 +22,17 @@ public class mystack extends Stack{
         if (this.empty()) {
             return null;
         } else {
+
             int index = stack.size() - 1;
-            return stack.remove(index);
+            Object removed = stack.get(index);
+            stack.remove(index);
+            return removed;
         }
     }
 
     @Override
     public Object peek() {
-        if (this.empty()){
+        if (this.empty()) {
             return null;
         } else {
             int index = stack.size() - 1;
@@ -40,6 +44,11 @@ public class mystack extends Stack{
     @Override
     public boolean empty() {
         return (stack.isEmpty());
+    }
+
+    @Override
+    public int size() {
+        return stack.size();
     }
 
     @Override

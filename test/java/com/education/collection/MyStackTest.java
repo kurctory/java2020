@@ -2,14 +2,13 @@ package com.education.collection;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import java.util.NoSuchElementException;
 
 
-class mystackTest {
+class MyStackTest {
 
     @Test
     void push() {
-        mystack stack = new mystack();
+        MyStack stack = new MyStack();
         stack.push(5);
         Assertions.assertEquals(1, stack.size());
         Assertions.assertEquals(5, stack.peek());
@@ -18,7 +17,7 @@ class mystackTest {
 
     @Test
     void pop() {
-        mystack stack = new mystack();
+        MyStack stack = new MyStack();
         stack.push(2);
         stack.push(3);
         Assertions.assertEquals(3, stack.pop());
@@ -27,19 +26,20 @@ class mystackTest {
 
     @Test
     public void testPeekEmpty() {
-        mystack testStack = new mystack();
-        Assertions.assertThrows(NoSuchElementException.class, () -> testStack.peek());
+        MyStack testStack = new MyStack();
+        Assertions.assertEquals(null, testStack.peek());
     }
+
     @Test
     public void testPeekNotEmpty() {
-        mystack testStack = new mystack();
+        MyStack testStack = new MyStack();
         testStack.push(5);
         Assertions.assertEquals(5, testStack.peek());
     }
 
     @Test
     void empty() {
-        mystack stack = new mystack();
+        MyStack stack = new MyStack();
         Assertions.assertTrue(stack.empty());
     }
 }
