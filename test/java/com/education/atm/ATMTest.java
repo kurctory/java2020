@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import java.io.*;
+import java.util.Vector;
 
 class ATMTest{
     private ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -21,10 +22,12 @@ class ATMTest{
     @Test
     void testfindCombinations() {
         ATM example = new ATM();
-        int arr[] = new int[5];
-        int[] change = {2, 3};
-        example.findCombinationsUtil(arr, change, 0, 5, 5);
-        Assert.assertEquals("2 3", output.toString());
+        int arr[] = new int[4];
+        int[] change = {1, 3};
+        Vector res = new Vector<>();
+        Vector expected = new Vector();
+        example.findCombinationsUtil(arr, change, 0, 4, 4, res);
+        Assert.assertEquals("[1, 1, 1, 1, 1, 3]", res.toString());
     }
 
     @After

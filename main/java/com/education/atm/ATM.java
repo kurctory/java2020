@@ -10,15 +10,17 @@ public class ATM {
     num - given number
     reducedNum - reduced number
     */
-    static void findCombinationsUtil(int[] arr, int[] change, int index, int num, int reducedNum) {
+    static void findCombinationsUtil(int[] arr, int[] change, int index, int num, int reducedNum, Vector res) {
         // Base condition
         if (reducedNum < 0)
             return;
 
         // If combination is found, print it
         if (reducedNum == 0) {
-            for (int i = 0; i < index; i++)
+            for (int i = 0; i < index; i++) {
                 System.out.print(arr[i] + " ");
+                res.addElement(arr[i]);
+            }
             System.out.println();
             return;
         }
@@ -34,9 +36,10 @@ public class ATM {
                 // next element of array is k
                 arr[index] = k;
                 // call recursively with reduced number
-                findCombinationsUtil(arr, change, index + 1, num, reducedNum - k);
+                findCombinationsUtil(arr, change, index + 1, num, reducedNum - k, res);
             }
         }
+        return;
     }
 
     private static boolean check(int[] arr, int toCheckValue) {
@@ -64,22 +67,34 @@ public class ATM {
         // array to store the combinations
         // It can contain max n elements
         int[] arr = new int[n];
-
+        Vector res = new Vector();
         // find all combinations
-        findCombinationsUtil(arr, change, 0, n, n);
+        findCombinationsUtil(arr, change, 0, n, n, res);
+    }
+
+    private static int inputControl(Scanner in) {
+        int n = 0;
+        try {
+            n = in.nextInt();
+            if (n < 0) throw new IllegalArgumentException("Invalid input");
+        } catch (IllegalArgumentException iae) {
+            System.out.print("Invalid input");
+            System.exit(0);
+        }
+        return n;
     }
 
     // Driver code
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.print("Input an amount : ");
-        int n = in.nextInt();
+        int n = inputControl(in);
         System.out.print("Input amount of change : ");
-        int amount = in.nextInt();
+        int amount = inputControl(in);
         System.out.print("Input change : ");
         int[] change = new int[amount];
         for (int i = 0; i < amount; i++) {
-            change[i] = in.nextInt();
+            change[i] = inputControl(in);
         }
         Arrays.sort(change);
 
